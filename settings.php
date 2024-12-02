@@ -22,7 +22,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// Ensure the configurations for this site are set
+defined('MOODLE_INTERNAL') || die();
+
+require_once($CFG->dirroot . '/local/vatsim/lib.php');
+
+
 if ($hassiteconfig) {
 
     // Create the new settings page
@@ -36,16 +40,33 @@ if ($hassiteconfig) {
     // Add a setting field to the settings for this page
     $settings->add(new admin_setting_configtext(
     // This is the reference you will use to your configuration
-        'local_vatsim/apikey',
+        'local_vatsim/apiurl',
 
         // This is the friendly title for the config, which will be displayed
-        'External API: Key',
+        'API URL for P0 Upgrades',
 
         // This is helper text for this config field
-        'This is the key used to access the External API',
+        'This is to set the URL for the http request for P0 Upgrades',
 
         // This is the default value
-        'No Key Defined',
+        "",
+
+        // This is the type of Parameter this config is
+        PARAM_TEXT
+    ));
+
+    $settings->add(new admin_setting_configtext(
+    // This is the reference you will use to your configuration
+        'local_vatsim/courseid',
+
+        // This is the friendly title for the config, which will be displayed
+        'Course ID for P0 Upgrades',
+
+        // This is helper text for this config field
+        'This is to set the Course ID for the http request for P0 Upgrades',
+
+        // This is the default value
+        "",
 
         // This is the type of Parameter this config is
         PARAM_TEXT

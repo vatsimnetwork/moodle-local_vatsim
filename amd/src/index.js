@@ -21,4 +21,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// THIS DOES NOTHING AT THE MOMENT
+export const init = () => {
+    window.console.log('Hello World!')
+}

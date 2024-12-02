@@ -15,18 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin functions for the local_[pluginname] plugin.
+ * Add event handlers of graded submissions for bookings
  *
- * @package   local_[pluginname]
- * @copyright Year, You Name <your@email.address>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_booking
+ * @author     Mustafa Hajjar (mustafahajjar@gmail.com)
+ * @category   event
+ * @copyright  BAVirtual.co.uk © 2021
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-function local_vatsim_extend_settings_navigation($settingsnav, $context) {
-    global $COURSE, $PAGE;
+defined('MOODLE_INTERNAL') || die();
 
-    if( empty($COURSE->subscriber))
-    $COURSE->subscriber = true;
-
-
-}
+$observers = array(
+    array(
+        'eventname' => '\mod_assign\event\submission_graded',
+        'callback' => '\local_vatsim\grading_observers::submission_graded',
+    ),
+);

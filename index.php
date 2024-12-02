@@ -15,18 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin functions for the local_[pluginname] plugin.
+ * Session Booking Plugin
  *
- * @package   local_[pluginname]
- * @copyright Year, You Name <your@email.address>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_booking
+ * @author     Mustafa Hajjar (mustafahajjar@gmail.com)
+ * @copyright  BAVirtual.co.uk © 2021
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-function local_vatsim_extend_settings_navigation($settingsnav, $context) {
-    global $COURSE, $PAGE;
-
-    if( empty($COURSE->subscriber))
-    $COURSE->subscriber = true;
-
-
-}
