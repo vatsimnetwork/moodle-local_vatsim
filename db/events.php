@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $observers = array(
     array(
-        'eventname' => '\mod_assign\event\submission_graded',
+        'eventname' => '\mod_quiz\event\attempt_submitted',
         'callback' => '\local_vatsim\grading_observers::submission_graded',
     ),
 );

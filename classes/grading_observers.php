@@ -24,7 +24,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_booking;
+namespace local_vatsim;
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/local/vatsim/lib.php');
@@ -41,12 +41,8 @@ require_once($CFG->dirroot . '/local/vatsim/lib.php');
  */
 
 
-use AllowDynamicProperties;
-use HttpRequest;
-use local_booking\local\participant\entities\student;
-use local_booking\local\session\entities\booking;
 
-#[AllowDynamicProperties] class grading_observers {
+class grading_observers {
 
     /**
      * A submission has been graded.
@@ -54,10 +50,6 @@ use local_booking\local\session\entities\booking;
      * @param \mode\assign\submission_graded $event The event.
      * @return void
      */
-
-    protected function http_request() {
-
-    }
     public static function submission_graded($event) {
         $courseid = $event->courseid;
         $studentid = $event->relateduserid;
@@ -67,9 +59,12 @@ use local_booking\local\session\entities\booking;
         $configcourseid = get_config('local/vatsim', 'courseid');
         $url = get_config('local/vatsim', 'apiurl');
 
-        if($courseid == 2) {
+        var_dump($courseid, $studentid, $exerciseid, $configcourseid, $url);
+        die("die");
+
+//        if($courseid == 2) {
             $data = array(
-              'content' => "Testing"
+              'content' => "$courseid"
             );
 
             $json_data = json_encode($data);
@@ -87,6 +82,6 @@ use local_booking\local\session\entities\booking;
             $get = $curl->post("https://discord.com/api/webhooks/1313084662155055144/KcVyRWf9bSa_oYZoRFNHEe3nk1db_RUzlARI2xs8thvP6CZBkPcPDVFxQTUp5wSGPJY9", $json_data, $options);
             $result = json_decode($get);
             echo $result;
-        }
+//        }
     }
 }

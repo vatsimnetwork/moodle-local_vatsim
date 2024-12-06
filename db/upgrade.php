@@ -15,15 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Session Booking Plugin
+ * Upgrade steps for the plugintype_pluginname plugin.
  *
- * @package    local_booking
- * @author     Mustafa Hajjar (mustafahajjar@gmail.com)
- * @copyright  BAVirtual.co.uk © 2021
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   plugintype_pluginname
+ * @copyright Year, You Name <your@email.address>
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$plugin->version = 2024120105;
-$plugin->component = 'local_vatsim';
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.0';
+function xmldb_local_vatsim_upgrade($oldversion = 0) {
+    // Everything has succeeded to here. Return true.
+    return true;
+}
