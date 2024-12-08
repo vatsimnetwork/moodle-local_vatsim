@@ -25,6 +25,9 @@
  */
 
 namespace local_vatsim;
+use mod_quiz_external;
+use quiz_statistics\quiz_attempt_deleted;
+
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/local/vatsim/lib.php');
@@ -53,18 +56,23 @@ class grading_observers {
     public static function submission_graded($event) {
         $courseid = $event->courseid;
         $studentid = $event->relateduserid;
+        $student = \core_user::get_user($studentid);
         $exerciseid = $event->contextinstanceid;
+        $attempts = $event->get_record_snapshot('quiz_attempts', $event->objectid);
+        $grade = $attempts->{'sumgrades'};
+        //$attempts["attempts"]
+
+        $configcourseid = get_config('local_vatsim', 'courseid');
+        $url = get_config('local_vatsim', 'apiurl');
+        //
 
 
-        $configcourseid = get_config('local/vatsim', 'courseid');
-        $url = get_config('local/vatsim', 'apiurl');
-
-        var_dump($courseid, $studentid, $exerciseid, $configcourseid, $url);
-        die("die");
+//        var_dump($event);
+//        die("die");
 
 //        if($courseid == 2) {
             $data = array(
-              'content' => "$courseid"
+              'content' => "$grade"
             );
 
             $json_data = json_encode($data);
