@@ -57,13 +57,13 @@ if ($hassiteconfig) {
 
     $settings->add(new admin_setting_configtext(
     // This is the reference you will use to your configuration
-        'local_vatsim/courseid',
+        'local_vatsim/quizid',
 
         // This is the friendly title for the config, which will be displayed
         'Course ID for P0 Upgrades',
 
         // This is helper text for this config field
-        'This is to set the Course ID for the http request for P0 Upgrades',
+        'This is to set the Quiz ID for the http request for P0 Upgrades',
 
         // This is the default value
         "",

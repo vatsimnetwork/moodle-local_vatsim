@@ -25,8 +25,6 @@
  */
 
 namespace local_vatsim;
-use mod_quiz_external;
-use quiz_statistics\quiz_attempt_deleted;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -46,7 +44,6 @@ require_once($CFG->dirroot . '/local/vatsim/lib.php');
 
 
 class grading_observers {
-
     /**
      * A submission has been graded.
      *
@@ -54,31 +51,36 @@ class grading_observers {
      * @return void
      */
     public static function submission_graded($event) {
-        $courseid = $event->courseid;
-        $studentid = $event->relateduserid;
-        $student = \core_user::get_user($studentid);
-        $exerciseid = $event->contextinstanceid;
-        $attempts = $event->get_record_snapshot('quiz_attempts', $event->objectid);
-        $grade = $attempts->{'sumgrades'};
-        //$attempts["attempts"]
+        global $CFG;
+        $configquizid = get_config('local_vatsim', 'quizid');
+        $quiz = $event->get_record_snapshot('quiz', $event->other['quizid']);
+        if($quiz->{'id'} == $configquizid) {
 
-        $configcourseid = get_config('local_vatsim', 'courseid');
-        $url = get_config('local_vatsim', 'apiurl');
-        //
+            $url = get_config('local_vatsim', 'apiurl');
+            $studentid = $event->relateduserid;
+            $student = \core_user::get_user($studentid);
+            $attempts = $event->get_record_snapshot('quiz_attempts', $event->objectid);
 
+            $maxGrade = (float) $quiz->{'sumgrades'};
+            $grade = $attempts->{'sumgrades'} / $maxGrade  * 100;
 
-//        var_dump($event);
-//        die("die");
+            if(strlen($student->{'idnumber'}) != 0){
+                $data = array(
+                  'cid' => $student->{'idnumber'},
+                  'grade' => "$grade"
 
-//        if($courseid == 2) {
-            $data = array(
-              'content' => "$grade"
-            );
-
+                );
+            } else {
+                $data = array(
+                    'cid' => $student->{'idnumber'},
+                    'grade' => "$grade"
+                );
+            }
             $json_data = json_encode($data);
             $header = array(
               'Content-Type: application/json',
               'Accept: application/json',
+               'X_API_KEY: ' . $CFG->vatsim_api_key ?? null
             );
             $options = array(
                 'RETURNTRANSFER' => 1,
@@ -87,9 +89,9 @@ class grading_observers {
             );
             $curl = new \curl();
             $curl->setHeader($header);
-            $get = $curl->post("https://discord.com/api/webhooks/1313084662155055144/KcVyRWf9bSa_oYZoRFNHEe3nk1db_RUzlARI2xs8thvP6CZBkPcPDVFxQTUp5wSGPJY9", $json_data, $options);
+            $get = $curl->post($url, $json_data, $options);
             $result = json_decode($get);
             echo $result;
-//        }
+        }
     }
 }
