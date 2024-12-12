@@ -17,9 +17,10 @@
 /**
  * Upgrade steps for the plugintype_pluginname plugin.
  *
- * @package   plugintype_pluginname
- * @copyright Year, You Name <your@email.address>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_vatsim
+ * @author     Eric Steiner (e.steiner@vatsim.net)
+ * @copyright  VATSIM Inc © 2024
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 function xmldb_local_vatsim_upgrade($oldversion = 0) {

@@ -15,11 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Session Booking Plugin
+ * VATSIM API Helper Plugin
  *
- * @package    local_booking
- * @author     Mustafa Hajjar (mustafahajjar@gmail.com)
- * @copyright  BAVirtual.co.uk © 2021
+ * @package    local_vatsim
+ * @author     Eric Steiner (e.steiner@vatsim.net)
+ * @copyright  VATSIM Inc © 2024
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

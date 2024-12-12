@@ -14,11 +14,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Example module for the plugintype_pluginname plugin.
  *
- * @module   plugintype_pluginname/example
- * @copyright Year, You Name <your@email.address>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_vatsim
+ * @author     Eric Steiner (e.steiner@vatsim.net)
+ * @category   event
+ * @copyright  VATSIM Inc © 2024
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 export const init = () => {

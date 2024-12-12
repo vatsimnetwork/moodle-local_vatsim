@@ -17,10 +17,10 @@
 /**
  * Grading observers.
  *
- * @package    local_booking
- * @author     Mustafa Hajjar (mustafahajjar@gmail.com)
+ * @package    local_vatsim
+ * @author     Eric Steiner (e.steiner@vatsim.net)
  * @category   event
- * @copyright  BAVirtual.co.uk © 2021
+ * @copyright  VATSIM Inc © 2024
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -28,7 +28,6 @@ namespace local_vatsim;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/local/vatsim/lib.php');
 
 /**
  * Group observers class to listen to graded assignments

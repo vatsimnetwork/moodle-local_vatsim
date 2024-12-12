@@ -15,16 +15,15 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin settings for the local_[pluginname] plugin.
+ * Plugin admin settings.
  *
- * @package   local_[pluginname]
- * @copyright Year, You Name <your@email.address>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    local_vatsim
+ * @author     Eric Steiner (e.steiner@vatsim.net)
+ * @copyright  VATSIM Inc © 2024
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
-
-require_once($CFG->dirroot . '/local/vatsim/lib.php');
 
 
 if ($hassiteconfig) {

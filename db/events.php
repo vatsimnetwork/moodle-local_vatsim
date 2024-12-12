@@ -15,12 +15,12 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Add event handlers of graded submissions for bookings
+ * Add event handlers for when an exam is completed.
  *
- * @package    local_booking
- * @author     Mustafa Hajjar (mustafahajjar@gmail.com)
+ * @package    local_vatsim
+ * @author     Eric Steiner (e.steiner@vatsim.net)
  * @category   event
- * @copyright  BAVirtual.co.uk © 2021
+ * @copyright  VATSIM Inc © 2024
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
