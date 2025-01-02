@@ -71,7 +71,7 @@ class grading_observers {
                 );
             } else {
                 $data = array(
-                    'cid' => $student->{'idnumber'},
+                    'cid' => $student->{'username'},
                     'grade' => "$grade"
                 );
             }
