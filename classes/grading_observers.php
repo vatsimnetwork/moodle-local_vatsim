@@ -79,7 +79,7 @@ class grading_observers {
             $header = array(
               'Content-Type: application/json',
               'Accept: application/json',
-               'X_API_KEY: ' . $CFG->vatsim_api_key ?? null
+               'X-API-KEY: ' . $CFG->vatsim_api_key ?? null
             );
             $options = array(
                 'RETURNTRANSFER' => 1,
