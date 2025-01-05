@@ -17,80 +17,53 @@
 /**
  * Grading observers.
  *
- * @package    local_vatsim
- * @author     Eric Steiner (e.steiner@vatsim.net)
- * @category   event
- * @copyright  VATSIM Inc © 2024
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   local_vatsim
+ * @category  event
+ * @copyright VATSIM Inc.
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 namespace local_vatsim;
 
 defined('MOODLE_INTERNAL') || die();
 
-
-/**
- * Group observers class to listen to graded assignments
- * for clearing previously posted student availability.
- *
- * @package    local_booking
- * @author     Mustafa Hajjar (mustafahajjar@gmail.com)
- * @category   event handler
- * @copyright  BAVirtual.co.uk © 2021
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
-
-
 class grading_observers {
     /**
      * A submission has been graded.
      *
-     * @param \mode\assign\submission_graded $event The event.
-     * @return void
+     * @param \mod\assign\submission_graded $event The event.
+     * @return bool
      */
     public static function submission_graded($event) {
         global $CFG;
+
         $configquizid = get_config('local_vatsim', 'quizid');
         $quiz = $event->get_record_snapshot('quiz', $event->other['quizid']);
-        if($quiz->{'id'} == $configquizid) {
 
-            $url = get_config('local_vatsim', 'apiurl');
-            $studentid = $event->relateduserid;
-            $student = \core_user::get_user($studentid);
-            $attempts = $event->get_record_snapshot('quiz_attempts', $event->objectid);
-
-            $maxGrade = (float) $quiz->{'sumgrades'};
-            $grade = $attempts->{'sumgrades'} / $maxGrade  * 100;
-
-            if(strlen($student->{'idnumber'}) != 0){
-                $data = array(
-                  'cid' => $student->{'idnumber'},
-                  'grade' => "$grade"
-
-                );
-            } else {
-                $data = array(
-                    'cid' => $student->{'username'},
-                    'grade' => "$grade"
-                );
-            }
-            $json_data = json_encode($data);
-            $header = array(
-              'Content-Type: application/json',
-              'Accept: application/json',
-               'X-API-KEY: ' . $CFG->vatsim_api_key ?? null
-            );
-            $options = array(
-                'RETURNTRANSFER' => 1,
-                'HEADER' => 0,
-                'FAILONERROR' => 1,
-            );
-            $curl = new \curl();
-            $curl->setHeader($header);
-            $get = $curl->post($url, $json_data, $options);
-            $result = json_decode($get);
-            echo $result;
+        if ($quiz->id != $configquizid) {
+            return true;
         }
+
+        $student = \core_user::get_user($event->relateduserid);
+
+        $attempts = $event->get_record_snapshot('quiz_attempts', $event->objectid);
+        $maxgrade = (float) $quiz->sumgrades;
+        $grade = $attempts->sumgrades / $maxgrade * 100;
+
+        $curl = new \curl();
+
+        $url = get_config('local_vatsim', 'apiurl');
+        $curl->setHeader('X-API-Key: ' . $CFG->vatsim_api_key ?? '');
+
+        $curl->post($url, [
+            'cid' => $student->idnumber ?: $student->username,
+            'grade' => $grade,
+        ]);
+
+        if ($curl->info['http_code'] != 200) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -17,57 +17,33 @@
 /**
  * Plugin admin settings.
  *
- * @package    local_vatsim
- * @author     Eric Steiner (e.steiner@vatsim.net)
- * @copyright  VATSIM Inc © 2024
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   local_vatsim
+ * @copyright VATSIM Inc.
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-
 if ($hassiteconfig) {
+    $settings = new admin_settingpage('local_vatsim', 'VATSIM');
 
-    // Create the new settings page
-    // - in a local plugin this is not defined as standard, so normal $settings->methods will throw an error as
-    // $settings will be null
-    $settings = new admin_settingpage('local_vatsim', 'VATSIM API Helper');
+    if ($ADMIN->fulltree) {
+        $settings->add(new admin_setting_configtext(
+            'local_vatsim/apiurl',
+            new lang_string('apiurl', 'local_vatsim'),
+            new lang_string('apiurl_desc', 'local_vatsim'),
+            '',
+            PARAM_TEXT
+        ));
 
-    // Create
+        $settings->add(new admin_setting_configtext(
+            'local_vatsim/quizid',
+            new lang_string('quizid', 'local_vatsim'),
+            new lang_string('quizid_desc', 'local_vatsim'),
+            '',
+            PARAM_INT
+        ));
+    }
+
     $ADMIN->add('localplugins', $settings);
-
-    // Add a setting field to the settings for this page
-    $settings->add(new admin_setting_configtext(
-    // This is the reference you will use to your configuration
-        'local_vatsim/apiurl',
-
-        // This is the friendly title for the config, which will be displayed
-        'API URL for P0 Upgrades',
-
-        // This is helper text for this config field
-        'This is to set the URL for the http request for P0 Upgrades',
-
-        // This is the default value
-        "",
-
-        // This is the type of Parameter this config is
-        PARAM_TEXT
-    ));
-
-    $settings->add(new admin_setting_configtext(
-    // This is the reference you will use to your configuration
-        'local_vatsim/quizid',
-
-        // This is the friendly title for the config, which will be displayed
-        'Course ID for P0 Upgrades',
-
-        // This is helper text for this config field
-        'This is to set the Quiz ID for the http request for P0 Upgrades',
-
-        // This is the default value
-        "",
-
-        // This is the type of Parameter this config is
-        PARAM_TEXT
-    ));
 }

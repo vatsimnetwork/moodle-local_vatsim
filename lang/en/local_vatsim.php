@@ -15,11 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version metadata for the local-vatsim plugin.
+ * Languages configuration for the local_vatsim plugin.
  *
- * @package  local_vatsim
- * @copyright 2024, VATSIM Technology Team tech@vatsim.net
+ * @package   local_vatsim
+ * @copyright VATSIM Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'VATSIM API Connector';
+$string['pluginname'] = 'VATSIM Moodle Integrations';
+
+$string['apiurl'] = 'API URL for P0 Upgrades';
+$string['apiurl_desc'] = 'This is to set the URL for the http request for P0 Upgrades';
+
+$string['quizid'] = 'Course ID for P0 Upgrades';
+$string['quizid_desc'] = 'This is to set the Quiz ID for the http request for P0 Upgrades';

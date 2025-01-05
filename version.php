@@ -15,13 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * VATSIM API Helper Plugin
+ * Version metadata for the local_vatsim plugin.
  *
- * @package    local_vatsim
- * @author     Eric Steiner (e.steiner@vatsim.net)
- * @copyright  VATSIM Inc © 2024
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   local_vatsim
+ * @copyright VATSIM Inc.
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+defined('MOODLE_INTERNAL') || die();
 
 $plugin->version = 2024120105;
 $plugin->component = 'local_vatsim';

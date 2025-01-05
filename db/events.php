@@ -17,18 +17,17 @@
 /**
  * Add event handlers for when an exam is completed.
  *
- * @package    local_vatsim
- * @author     Eric Steiner (e.steiner@vatsim.net)
- * @category   event
- * @copyright  VATSIM Inc © 2024
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   local_vatsim
+ * @category  event
+ * @copyright VATSIM Inc.
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$observers = array(
-    array(
+$observers = [
+    [
         'eventname' => '\mod_quiz\event\attempt_submitted',
         'callback' => '\local_vatsim\grading_observers::submission_graded',
-    ),
-);
+    ],
+];
