@@ -35,8 +35,6 @@ class grading_observers {
      * @return bool
      */
     public static function submission_graded($event) {
-        global $CFG;
-
         $configquizid = get_config('local_vatsim', 'quizid');
         $quiz = $event->get_record_snapshot('quiz', $event->other['quizid']);
 
@@ -53,7 +51,8 @@ class grading_observers {
         $curl = new \curl();
 
         $url = get_config('local_vatsim', 'apiurl');
-        $curl->setHeader('X-API-Key: ' . $CFG->vatsim_api_key ?? '');
+        $key = get_config('local_vatsim', 'apikey');
+        $curl->setHeader("X-API-Key: $key");
 
         $curl->post($url, [
             'cid' => $student->idnumber ?: $student->username,

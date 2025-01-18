@@ -11,35 +11,19 @@ The installation of this plugin is based on your own specs for moodle.
 
 Those who wish to use this plugin need to set the follow properties:
 
-### ``config.php:``
-
-Within the config.php, the following needs to be set:
-
-```php
-$CFG->vatsim_api_key = getenv('VATSIM_API_KEY');
-```
-
-This will set the API key for the request within the event handler allowing the http request to go though.
-
-### ``.env``
-
-The following needs to be set within the .env file:
-
-```.dotenv
-VATSIM_API_KEY: XXXX
-```
-
-This will ensure that the config paramater will have something to read.
-
-### ``Site Admin -> Local Plugins -> VATSIM API Helper Settings Page``
+### ``Site Admin -> Local Plugins -> VATSIM``
 
 The following needs to be set within the plugin settings page to ensure proper usage of the http request:
 
-``API URL``
+``P0 webhook URL``
 
 This will set the URL at which the http request is made.
 
-``Quiz ID``
+``P0 webhook secret``
+
+This will set the API key for the request within the event handler allowing the http request to go though.
+
+``P0 quiz ID``
 
 This sets the quiz ID so that not every quiz is being used for this plugin, only the P0 exam that is in use.
 

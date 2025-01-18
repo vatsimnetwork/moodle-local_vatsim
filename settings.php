@@ -36,6 +36,13 @@ if ($hassiteconfig) {
             PARAM_TEXT
         ));
 
+        $settings->add(new admin_setting_configpasswordunmask(
+            'local_vatsim/apikey',
+            new lang_string('apikey', 'local_vatsim'),
+            new lang_string('apikey_desc', 'local_vatsim'),
+            ''
+        ));
+
         $settings->add(new admin_setting_configtext(
             'local_vatsim/quizid',
             new lang_string('quizid', 'local_vatsim'),

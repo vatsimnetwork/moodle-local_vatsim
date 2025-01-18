@@ -24,8 +24,11 @@
 
 $string['pluginname'] = 'VATSIM Moodle Integrations';
 
-$string['apiurl'] = 'API URL for P0 Upgrades';
-$string['apiurl_desc'] = 'This is to set the URL for the http request for P0 Upgrades';
+$string['apiurl'] = 'P0 webhook URL';
+$string['apiurl_desc'] = 'This sets the URL to send P0 grading events to.';
 
-$string['quizid'] = 'Course ID for P0 Upgrades';
-$string['quizid_desc'] = 'This is to set the Quiz ID for the http request for P0 Upgrades';
+$string['apikey'] = 'P0 webhook secret';
+$string['apikey_desc'] = 'This sets the secret key to use when sending data to the webhook.';
+
+$string['quizid'] = 'P0 quiz ID';
+$string['quizid_desc'] = 'This specifies which quiz to observe for grading events.';
