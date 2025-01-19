@@ -28,6 +28,6 @@ defined('MOODLE_INTERNAL') || die();
 $observers = [
     [
         'eventname' => '\mod_quiz\event\attempt_submitted',
-        'callback' => '\local_vatsim\grading_observers::submission_graded',
+        'callback' => '\local_vatsim\grading_observers::attempt_submitted',
     ],
 ];

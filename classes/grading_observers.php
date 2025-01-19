@@ -29,24 +29,23 @@ defined('MOODLE_INTERNAL') || die();
 
 class grading_observers {
     /**
-     * A submission has been graded.
+     * A quiz attempt has been submitted.
      *
-     * @param \mod\assign\submission_graded $event The event.
+     * @param \mod_quiz\event\attempt_submitted $event The event.
      * @return bool
      */
-    public static function submission_graded($event) {
-        $configquizid = get_config('local_vatsim', 'quizid');
-        $quiz = $event->get_record_snapshot('quiz', $event->other['quizid']);
+    public static function attempt_submitted($event) {
+        $attempt = $event->get_record_snapshot('quiz_attempts', $event->objectid);
+        $quiz = $event->get_record_snapshot('quiz', $attempt->quiz);
+        $student = \core_user::get_user($event->relateduserid);
 
+        $configquizid = get_config('local_vatsim', 'quizid');
         if ($quiz->id != $configquizid) {
             return true;
         }
 
-        $student = \core_user::get_user($event->relateduserid);
-
-        $attempts = $event->get_record_snapshot('quiz_attempts', $event->objectid);
         $maxgrade = (float) $quiz->sumgrades;
-        $grade = $attempts->sumgrades / $maxgrade * 100;
+        $grade = $attempt->sumgrades / $maxgrade * 100;
 
         $curl = new \curl();
 
