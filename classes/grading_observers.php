@@ -57,7 +57,7 @@ class grading_observers {
 
         $curl->post($url, [
             'cid' => $student->idnumber ?: $student->username,
-            'grade' => $grade,
+            'grade' => number_format($grade, 2),
         ]);
 
         if ($curl->info['http_code'] != 200) {
