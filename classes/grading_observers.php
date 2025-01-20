@@ -47,10 +47,12 @@ class grading_observers {
         $maxgrade = (float) $quiz->sumgrades;
         $grade = $attempt->sumgrades / $maxgrade * 100;
 
-        $curl = new \curl();
-
         $url = get_config('local_vatsim', 'apiurl');
         $key = get_config('local_vatsim', 'apikey');
+
+        $curl = new \curl();
+
+        $curl->setHeader('Accept: application/json');
         $curl->setHeader("X-API-Key: $key");
 
         $curl->post($url, [
