@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Add event handlers for when an exam is completed.
+ * Add event handlers for local_vatsim.
  *
  * @package   local_vatsim
  * @category  event
@@ -26,6 +26,14 @@
 defined('MOODLE_INTERNAL') || die();
 
 $observers = [
+    [
+        'eventname' => '\core\event\user_created',
+        'callback' => '\local_vatsim\user_observers::user_created',
+    ],
+    [
+        'eventname' => '\core\event\user_updated',
+        'callback' => '\local_vatsim\user_observers::user_updated',
+    ],
     [
         'eventname' => '\mod_quiz\event\attempt_submitted',
         'callback' => '\local_vatsim\grading_observers::attempt_submitted',

@@ -1,6 +1,6 @@
 # moodle-helper-plugin
 
-This plugin is designed to be the bridge between the VATSIM E-Learning Site and other systems to provide a way to indicate a member has completed a P0 Exam.
+This plugin is designed to be the bridge between the VATSIM E-Learning Site and other systems.
 
 ## Installation
 

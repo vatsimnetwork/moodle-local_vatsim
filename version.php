@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2025011900;
+$plugin->version = 2025091400;
 $plugin->component = 'local_vatsim';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = '1.0';
